@@ -1,0 +1,48 @@
+{
+  "name": "uniapp-electron-demo",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "wang",
+  "scripts": {
+    "dev": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "38.3.0",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "com.example.uniapp.desktop",
+    "productName": "UniAppDemo",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      {
+        "from": "../hello/HelloWorld/unpackage/dist/build/web",
+        "to": "app",
+        "filter": [
+          "**/*"
+        ]
+      },
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "UniAppDemo",
+      "createDesktopShortcut": true
+    },
+    "asar": true
+  }
+}
